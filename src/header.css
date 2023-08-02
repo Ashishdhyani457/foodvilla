@@ -1,0 +1,22 @@
+.header{
+display: flex;
+justify-content: space-between;
+margin: 10px;
+border: 1px solid black;
+height: 10vh;
+}
+.nav-items > ul{
+    display:flex;
+    justify-content: space-between;
+   list-style: none;
+
+}
+
+.nav-items > ul>li{
+padding: 10px;
+   
+}
+.logo{
+    padding-left: 10px;
+    height: 10vh;
+}
