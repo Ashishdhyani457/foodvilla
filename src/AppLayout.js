@@ -9,20 +9,26 @@ import Error from './components/Error';
 import Contacts from './components/Contacts';
 import RestaurantMenu from './components/RestaurantMenu';
 // import Instamart from './components/Instamart';
-import { lazy,Suspense } from 'react';
+import { lazy,Suspense, useState } from 'react';
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/useContext';
 
 const Instamart=lazy(()=>import('./components/Instamart'))
 
 function AppLayout() {
+  const [user,setUser]= useState({name:"Ashish Dhyani",email:"ashishdhyani457@gmail.com"})
+
   return (
- <>
+  <>
+  {/* here we are giving dynamic value to our userContext*/}
+ <UserContext.Provider value={{user:user,setUser:setUser}}>
+
 <Header></Header>
 <Outlet/>
 <Footer></Footer>
 
+</UserContext.Provider>
 </>
-
   );
 }
 const appRouter=createBrowserRouter([

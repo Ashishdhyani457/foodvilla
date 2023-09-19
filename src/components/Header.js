@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../App.css"
 import { Link } from "react-router-dom";
+import UserContext from "../utils/useContext";
 const Title = () => (
   <a href="./">
     <img
@@ -12,6 +13,9 @@ const Title = () => (
 );
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+const {user} = useContext(UserContext);
+
+
   return (
     <div className="flex justify-between p-3 bg-blue-50 shadow-lg ml-3 mr-3" >
       <Title />
@@ -36,6 +40,8 @@ export default function Header() {
 
         </ul>
       </div>
+      <span className="mt-7 font-bold text-red-800">{user.name}</span>
+      <span className="mt-7 font-bold text-red-800">{user.email}</span>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
       ) : (
