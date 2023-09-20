@@ -12,6 +12,8 @@ import RestaurantMenu from './components/RestaurantMenu';
 import { lazy,Suspense, useState } from 'react';
 import Shimmer from './components/Shimmer';
 import UserContext from './utils/useContext';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 const Instamart=lazy(()=>import('./components/Instamart'))
 
@@ -21,6 +23,7 @@ function AppLayout() {
   return (
   <>
   {/* here we are giving dynamic value to our userContext*/}
+  <Provider store={store}>
  <UserContext.Provider value={{user:user,setUser:setUser}}>
 
 <Header></Header>
@@ -28,6 +31,7 @@ function AppLayout() {
 <Footer></Footer>
 
 </UserContext.Provider>
+</Provider>
 </>
   );
 }

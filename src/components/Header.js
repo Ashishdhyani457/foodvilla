@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import "../App.css"
+import "../App.css";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/useContext";
+import { useSelector } from "react-redux";
 const Title = () => (
   <a href="./">
     <img
@@ -13,11 +14,11 @@ const Title = () => (
 );
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-const {user} = useContext(UserContext);
-
-
+  const { user } = useContext(UserContext);
+  const cartItems = useSelector(store => store.cart.items);
+  console.log(cartItems);
   return (
-    <div className="flex justify-between p-3 bg-blue-50 shadow-lg ml-3 mr-3" >
+    <div className="flex justify-between p-3 bg-blue-50 shadow-lg ml-3 mr-3">
       <Title />
       <div className="nav-items justify-between py-3 ">
         <ul className="flex">
@@ -32,12 +33,11 @@ const {user} = useContext(UserContext);
             <Link to="/contacts">Contact us</Link>
           </li>
           <li className="p-2">
-            <Link to="/">Cart</Link>
-          </li>
-          <li className="p-2">
             <Link to="/instamart">Instamart</Link>
           </li>
-
+          <li className="p-2">
+            <Link to="/">Cart- {cartItems.length} items</Link>
+          </li>
         </ul>
       </div>
       <span className="mt-7 font-bold text-red-800">{user.name}</span>
