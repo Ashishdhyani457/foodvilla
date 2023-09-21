@@ -16,7 +16,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { user } = useContext(UserContext);
   const cartItems = useSelector(store => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
   return (
     <div className="flex justify-between p-3 bg-blue-50 shadow-lg ml-3 mr-3">
       <Title />
@@ -36,7 +36,7 @@ export default function Header() {
             <Link to="/instamart">Instamart</Link>
           </li>
           <li className="p-2">
-            <Link to="/">Cart- {cartItems.length} items</Link>
+            <Link to="/cart">Cart- {cartItems.length} items</Link>
           </li>
         </ul>
       </div>

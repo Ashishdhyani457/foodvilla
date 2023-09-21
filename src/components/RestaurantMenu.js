@@ -45,7 +45,7 @@ const RestaurantMenu = () => {
   ) : (
     <>
       <div className="RestaurantDetails">
-        <div>
+        <div className="ml-3">
           <h1>Restaurant id is {restaurant.id}</h1>
           <h2>Restaurant name {restaurant.name}</h2>
           <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} alt="" />
@@ -55,9 +55,9 @@ const RestaurantMenu = () => {
         </div>
         <div className="menu">
           <h1>Menu</h1>
-          <ul className="items">
+          <div className="flex flex-wrap justify-between ml-2 mr-2">
             {menu.map((item) => (
-              <li className="item">
+              <div className="item">
                 <div key={item.card?.info?.id}>{item.card?.info?.name}</div>
                 <button
                   className="p-2 m-5 bg-green-400"
@@ -76,9 +76,9 @@ const RestaurantMenu = () => {
                     ? item.card?.info?.price / 100 + " rupees"
                     : ""}
                 </h3>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </>
