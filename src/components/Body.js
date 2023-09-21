@@ -49,7 +49,8 @@ const Body = () => {
 
   const offline = useOffline(false);
 
-  if (offline) return <h1>hmmm..... looks like you are offline....</h1>;
+  if (offline) return (<h1>hmmm..... looks like you are offline....</h1>);
+
 
   if (!AllRestaurants) return <h1>all resturant not found</h1>;
   // if(filteredResturants?.length===0) return <h1>No resturants found</h1>
@@ -86,12 +87,11 @@ const Body = () => {
         <div className="flex flex-wrap justify-between ml-2 mr-2">
           {filteredRestaurants?.map((restaurant) => (
             // <Link to={"/restaurant/"+restaurant?.data?.id} > <RestaurantCard key={restaurant?.data?.id} {...restaurant.data} /> </Link>
-            <Link to={"/restaurant/" + restaurant?.info?.id}>
-              {" "}
+            <Link key={restaurant?.info?.id} to={"/restaurant/" + restaurant?.info?.id}>
               <RestaurantCard
                 key={restaurant?.info?.id}
                 {...restaurant.info}
-              />{" "}
+              />
             </Link>
           ))}
         </div>

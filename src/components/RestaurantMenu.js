@@ -57,7 +57,7 @@ const RestaurantMenu = () => {
           <h1>Menu</h1>
           <div className="flex flex-wrap justify-between ml-2 mr-2">
             {menu.map((item) => (
-              <div className="item">
+              <div key={item.card?.info?.id} className="item">
                 <div key={item.card?.info?.id}>{item.card?.info?.name}</div>
                 <button
                   className="p-2 m-5 bg-green-400"

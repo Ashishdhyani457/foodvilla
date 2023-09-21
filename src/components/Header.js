@@ -3,9 +3,11 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/useContext";
 import { useSelector } from "react-redux";
+import useOffline from "../utils/useOffline";
 const Title = () => (
   <a href="./">
     <img
+    data-testid="logo"
       className="h-20"
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd5Ka0-XNdYuTzCUkpWsZMRodmZ04zGoTrgULI3FA&s"
       alt=""
@@ -17,6 +19,8 @@ export default function Header() {
   const { user } = useContext(UserContext);
   const cartItems = useSelector(store => store.cart.items);
   // console.log(cartItems);
+  const offline = useOffline(false);
+
   return (
     <div className="flex justify-between p-3 bg-blue-50 shadow-lg ml-3 mr-3">
       <Title />
@@ -40,6 +44,7 @@ export default function Header() {
           </li>
         </ul>
       </div>
+      { offline? (<h1>🔴</h1>):(<h1> 🟢</h1>)}
       <span className="mt-7 font-bold text-red-800">{user.name}</span>
       <span className="mt-7 font-bold text-red-800">{user.email}</span>
       {isLoggedIn ? (
