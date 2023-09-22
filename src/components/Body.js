@@ -17,7 +17,7 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [AllRestaurants, setAllRestaurants] = useState([]);
 
- const {user,setUser}=useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getResturants();
@@ -49,10 +49,9 @@ const Body = () => {
 
   const offline = useOffline(false);
 
-  if (offline) return (<h1>hmmm..... looks like you are offline....</h1>);
+  if (offline) return <h1>hmmm..... looks like you are offline....</h1>;
 
-
-  if (!AllRestaurants) return <h1>all resturant not found</h1>;
+  // if (!AllRestaurants) return <h1>all resturant not found</h1>;
   // if(filteredResturants?.length===0) return <h1>No resturants found</h1>
 
   return AllRestaurants?.length === 0 ? (
@@ -68,6 +67,7 @@ const Body = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <button
+          data-testid="search-btn"
           className="search-btn bg-blue-400 rounded-md ml-2 hover:bg-blue-700"
           onClick={() => {
             const data = filterData(searchtxt, AllRestaurants);
@@ -76,26 +76,31 @@ const Body = () => {
         >
           search
         </button>
-<input value={user.name}  type="text" onChange={(e)=>{
-  setUser({name:e.target.value,email:"workingWipro@gmail.com"})
-}}/>
-
+        <input
+          value={user.name}
+          type="text"
+          onChange={(e) => {
+            setUser({ name: e.target.value, email: "workingWipro@gmail.com" });
+          }}
+        />
       </div>
+
       {filteredRestaurants?.length === 0 ? (
         <h1>No resturants found</h1>
       ) : (
-        <div className="flex flex-wrap justify-between ml-2 mr-2">
+        <div data-testid="res-list" className="flex flex-wrap justify-between ml-2 mr-2">
           {filteredRestaurants?.map((restaurant) => (
             // <Link to={"/restaurant/"+restaurant?.data?.id} > <RestaurantCard key={restaurant?.data?.id} {...restaurant.data} /> </Link>
-            <Link key={restaurant?.info?.id} to={"/restaurant/" + restaurant?.info?.id}>
-              <RestaurantCard
-                key={restaurant?.info?.id}
-                {...restaurant.info}
-              />
+            <Link
+              key={restaurant?.info?.id}
+              to={"/restaurant/" + restaurant?.info?.id}
+            >
+              <RestaurantCard key={restaurant?.info?.id} {...restaurant.info} />
             </Link>
           ))}
         </div>
-      )}
+      )
+      }
     </>
   );
 };

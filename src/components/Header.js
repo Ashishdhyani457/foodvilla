@@ -40,11 +40,12 @@ export default function Header() {
             <Link to="/instamart">Instamart</Link>
           </li>
           <li className="p-2">
-            <Link to="/cart">Cart- {cartItems.length} items</Link>
+            <Link data-testid="cart" to="/cart">Cart- {cartItems.length} items</Link>
           </li>
         </ul>
       </div>
-      { offline? (<h1>🔴</h1>):(<h1> 🟢</h1>)}
+     
+      <h1 data-testid="online-status">{offline? "🔴":"🟢"}</h1>
       <span className="mt-7 font-bold text-red-800">{user.name}</span>
       <span className="mt-7 font-bold text-red-800">{user.email}</span>
       {isLoggedIn ? (
